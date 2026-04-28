@@ -1,6 +1,6 @@
 {
-  "Name": "Phase 2",
+  "Name": "Grab",
   "ProjectType": "Process",
-  "Description": "Blank Process",
+  "Description": "PLC RPA for Grab",
   "MainFile": "Main.xaml"
 }
