@@ -123,7 +123,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Flowchart sap:VirtualizedContainerService.HintSize="634,660" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart sap:VirtualizedContainerService.HintSize="809,414.65666666666664" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -385,7 +385,7 @@
                 <av:Size x:Key="ShapeSize">110,70</av:Size>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Check date range files" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_40">
+            <Sequence DisplayName="Check date range files" sap:VirtualizedContainerService.HintSize="548,4566.5" sap2010:WorkflowViewState.IdRef="Sequence_40">
               <Sequence.Variables>
                 <Variable x:TypeArguments="s:String[]" Name="StatementFiles" />
                 <Variable x:TypeArguments="x:String" Name="BenchmarkFile" />
@@ -401,7 +401,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="514,176" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info" Message="[&quot;Check if config file is for FoodPanda or Grab&quot;]" />
-              <If Condition="[OutConfig(&quot;Running Process for Grab/FoodPanda&quot;).ToString.Trim.ToLower.Equals(&quot;g&quot;)]" sap:VirtualizedContainerService.HintSize="514,541" sap2010:WorkflowViewState.IdRef="If_21">
+              <If Condition="[OutConfig(&quot;Running Process for Grab/FoodPanda&quot;).ToString.Trim.ToLower.Equals(&quot;f&quot;)]" sap:VirtualizedContainerService.HintSize="514,541" sap2010:WorkflowViewState.IdRef="If_21">
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174.5" sap2010:WorkflowViewState.IdRef="Sequence_72">
                     <sap:WorkflowViewStateService.ViewState>
@@ -409,7 +409,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Throw Exception="[New BusinessRuleException(&quot;You have set the config to 'G' (Grab). However, you are currently running the FoodPanda process. Please switch to the Grab bot, or update the config file to 'F'.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                    <Throw Exception="[New BusinessRuleException(&quot;You have set the config to 'F' (FoodPanda). However, you are currently running the Grab process. Please switch to the FoodPanda bot, or update the config file to 'G'.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="Throw_5" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
@@ -591,7 +591,7 @@
                   <InArgument x:TypeArguments="x:Int32">[DateTime.DaysInMonth(Benchmark_Year, BenchMark_Month)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each CurrentDay" sap:VirtualizedContainerService.HintSize="514,405" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Enumerable.Range(1, TotalDaysInMonth)]">
+              <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each CurrentDay" sap:VirtualizedContainerService.HintSize="514,396" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[Enumerable.Range(1, TotalDaysInMonth)]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:Int32">
                     <ActivityAction.Argument>
@@ -608,7 +608,6 @@
                   </ActivityAction>
                 </ui:ForEach.Body>
               </ui:ForEach>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="514,167" sap2010:WorkflowViewState.IdRef="LogMessage_20" Message="[&quot;reached&quot;]" />
             </Sequence>
           </FlowStep>
         </FlowStep.Next>
