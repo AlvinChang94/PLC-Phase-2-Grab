@@ -111,7 +111,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="803,683" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="803.0000000000001,682.9999999999999" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="OutConfig" />
       <Variable x:TypeArguments="sd:DataTable" Name="ConfigDT" />
@@ -142,9 +142,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Flowchart.StartNode>
-        <x:Reference>__ReferenceID7</x:Reference>
+        <x:Reference>__ReferenceID8</x:Reference>
       </Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">135,15</av:Point>
@@ -724,7 +724,7 @@
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Error: Please ensure valid GrabMart file.&quot;]" />
+                                <Throw Exception="[New BusinessRuleException(&quot;Error: Please ensure valid GrabMart file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="Throw_8" />
                               </Sequence>
                             </If.Else>
                           </If>
@@ -804,7 +804,7 @@
                               <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="PLC POS sales - Invoke Workflow File (PLC POS sales.xaml)" sap:VirtualizedContainerService.HintSize="426,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PLC POS sales.xaml">
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="PLC POS sales - Invoke Workflow File (PLC POS sales.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PLC POS sales.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
                               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[OutConfig]</InArgument>
                               <InArgument x:TypeArguments="x:Int32" x:Key="in_Benchmark_Year">[Benchmark_Year]</InArgument>
@@ -879,19 +879,17 @@
                                   </ui:InvokeWorkflowFile>
                                 </Sequence>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                                  <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_1">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">135,285</av:Point>
                                         <av:Size x:Key="ShapeSize">110,70</av:Size>
-                                        <av:PointCollection x:Key="ConnectorLocation">714,319.65666666666664 754,319.65666666666664</av:PointCollection>
+                                        <av:PointCollection x:Key="ConnectorLocation">190,355 190,375</av:PointCollection>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Automation completed" sap:VirtualizedContainerService.HintSize="486,1955" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                                    <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Populate invoices" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_96">
                                       <Sequence.Variables>
-                                        <Variable x:TypeArguments="x:String" Name="OutputReconFolder" />
-                                        <Variable x:TypeArguments="x:String" Name="OutputGrabFolder" />
-                                        <Variable x:TypeArguments="x:String" Name="Timestamp" />
+                                        <Variable x:TypeArguments="x:String" Name="ConfigFile" />
                                       </Sequence.Variables>
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -899,69 +897,102 @@
                                           <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[&quot;Moving files into output folder&quot;]" />
-                                      <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_73">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:String">[Timestamp]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:String">[Now.ToString("(dd-MMM-yyyy) (HH.mm.ss tt)")]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_74">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:String">[OutputGrabFolder]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:String">[Path.Combine(OutConfig("Output Folder Path").ToString, "Grab Reconciliation " + Timestamp)]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_75">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:String">[OutputReconFolder]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:String">[Path.Combine(OutputGrabFolder, "Updated Recon File")]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                      <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="452,123.5" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[OutputReconFolder]" />
-                                      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="452,378.5" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Directory.GetFiles(OutConfig(&quot;Sales Folder Path&quot;).ToString)]">
-                                        <ui:ForEach.Body>
-                                          <ActivityAction x:TypeArguments="x:String">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="Sequence_94">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputGrabFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,187" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[currentText]" />
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:ForEach.Body>
-                                      </ui:ForEach>
-                                      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="452,378.5" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[Directory.GetFiles(OutConfig(&quot;Daily Statements Folder Path&quot;).ToString)]">
-                                        <ui:ForEach.Body>
-                                          <ActivityAction x:TypeArguments="x:String">
-                                            <ActivityAction.Argument>
-                                              <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-                                            </ActivityAction.Argument>
-                                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="Sequence_95">
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputGrabFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,187" sap2010:WorkflowViewState.IdRef="MoveFile_3" Overwrite="True" Path="[currentText]" />
-                                            </Sequence>
-                                          </ActivityAction>
-                                        </ui:ForEach.Body>
-                                      </ui:ForEach>
-                                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputReconFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="452,196" sap2010:WorkflowViewState.IdRef="MoveFile_2" Overwrite="True" Path="[Path.Combine(OutConfig(&quot;Reconciliation Folder Path&quot;).ToString, ReconciliationFileName)]" />
-                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:01:00" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="452,114.5" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;Automation completed&quot;]" />
+                                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoices - Invoke Workflow File (Invoices.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Invoices.xaml">
+                                        <ui:InvokeWorkflowFile.Arguments>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_Config">[OutConfig]</InArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="in_Benchmark_Year">[Benchmark_Year]</InArgument>
+                                          <InArgument x:TypeArguments="x:Int32" x:Key="in_Benchmark_Month">[Benchmark_Month]</InArgument>
+                                          <InArgument x:TypeArguments="x:String" x:Key="in_ReconciliationFileName">[ReconciliationFileName]</InArgument>
+                                        </ui:InvokeWorkflowFile.Arguments>
+                                      </ui:InvokeWorkflowFile>
                                     </Sequence>
+                                    <FlowStep.Next>
+                                      <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <av:Point x:Key="ShapeLocation">135,375</av:Point>
+                                            <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                            <av:PointCollection x:Key="ConnectorLocation">714,319.65666666666664 754,319.65666666666664</av:PointCollection>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Automation completed" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_98">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="x:String" Name="OutputReconFolder" />
+                                            <Variable x:TypeArguments="x:String" Name="OutputGrabFolder" />
+                                            <Variable x:TypeArguments="x:String" Name="Timestamp" />
+                                          </Sequence.Variables>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Info" Message="[&quot;Moving files into output folder&quot;]" />
+                                          <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_73">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[Timestamp]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[Now.ToString("(dd-MMM-yyyy) (HH.mm.ss tt)")]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_74">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[OutputGrabFolder]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[Path.Combine(OutConfig("Output Folder Path").ToString, "Grab Reconciliation " + Timestamp)]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <Assign sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="Assign_75">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[OutputReconFolder]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">[Path.Combine(OutputGrabFolder, "Updated Recon File")]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="452,123.5" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[OutputReconFolder]" />
+                                          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="452,378.5" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[Directory.GetFiles(OutConfig(&quot;Sales Folder Path&quot;).ToString)]">
+                                            <ui:ForEach.Body>
+                                              <ActivityAction x:TypeArguments="x:String">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                                                </ActivityAction.Argument>
+                                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputGrabFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,187" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[currentText]" />
+                                                </Sequence>
+                                              </ActivityAction>
+                                            </ui:ForEach.Body>
+                                          </ui:ForEach>
+                                          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="452,378.5" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[Directory.GetFiles(OutConfig(&quot;Daily Statements Folder Path&quot;).ToString)]">
+                                            <ui:ForEach.Body>
+                                              <ActivityAction x:TypeArguments="x:String">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                                                </ActivityAction.Argument>
+                                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputGrabFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,187" sap2010:WorkflowViewState.IdRef="MoveFile_3" Overwrite="True" Path="[currentText]" />
+                                                </Sequence>
+                                              </ActivityAction>
+                                            </ui:ForEach.Body>
+                                          </ui:ForEach>
+                                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[OutputReconFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="452,196" sap2010:WorkflowViewState.IdRef="MoveFile_2" Overwrite="True" Path="[Path.Combine(OutConfig(&quot;Reconciliation Folder Path&quot;).ToString, ReconciliationFileName)]" />
+                                          <ui:KillProcess Process="{x:Null}" AppliesTo="All" ContinueOnError="True" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="excel" />
+                                          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:01:00" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="452,114.5" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;Automation completed&quot;]" />
+                                        </Sequence>
+                                      </FlowStep>
+                                    </FlowStep.Next>
                                   </FlowStep>
                                 </FlowStep.Next>
                               </FlowStep>
@@ -1004,6 +1035,7 @@
       <x:Reference>__ReferenceID4</x:Reference>
       <x:Reference>__ReferenceID5</x:Reference>
       <x:Reference>__ReferenceID6</x:Reference>
+      <x:Reference>__ReferenceID7</x:Reference>
     </Flowchart>
   </Sequence>
 </Activity>
