@@ -121,7 +121,7 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UOB_Bank" sap:VirtualizedContainerService.HintSize="803,5608.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UOB_Bank" sap:VirtualizedContainerService.HintSize="807,5608.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -147,7 +147,7 @@
           <OutArgument x:TypeArguments="x:String">[BankStatementPath]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[Directory.GetFiles(in_Config("Sales Folder Path").ToString, "*.csv").Where(Function(f) Path.GetFileName(f).ToLower().Replace(" ", "").Contains("accountstatements")).FirstOrDefault()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[Directory.GetFiles(in_Config("Bank Statement Folder Path").ToString, "*.csv").Where(Function(f) Path.GetFileName(f).ToLower().Replace(" ", "").Contains("accountstatements")).FirstOrDefault()]</InArgument>
         </Assign.Value>
       </Assign>
       <ui:ReadTextFile File="{x:Null}" sap2010:Annotation.AnnotationText="Using 'Read CSV' will crash the robot, we must convert it to a string first" Content="[RawCsvText]" DisplayName="Read Text File" FileName="[BankStatementPath]" sap:VirtualizedContainerService.HintSize="548.5,168.5" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
