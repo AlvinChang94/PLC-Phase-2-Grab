@@ -688,7 +688,7 @@
                     <av:PointCollection x:Key="ConnectorLocation">470,85 470,105</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="Rename Reconciliation File" sap:VirtualizedContainerService.HintSize="554,2314" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                <Sequence DisplayName="Rename Reconciliation File" sap:VirtualizedContainerService.HintSize="554,2316.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_75">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -735,7 +735,7 @@
                                     <InArgument x:TypeArguments="x:String">["PLC GrabMart reconciliation.xlsx"]</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <ui:RenameFileX FileResource="{x:Null}" OutputFileResource="{x:Null}" DisplayName=" Rename Recon File" FilePath="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="416,215.33333333333334" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[OutConfig(&quot;Reconciliation Folder Path&quot;) + &quot;\PLC GrabMart reconcilitation&quot;]" />
+                                <ui:RenameFileX FileResource="{x:Null}" OutputFileResource="{x:Null}" DisplayName=" Rename Recon File" FilePath="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="416,215.33333333333334" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[OutConfig(&quot;Reconciliation Folder Path&quot;) + &quot;\PLC GrabMart reconciliation&quot;]" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
@@ -753,20 +753,20 @@
                       </ActivityAction>
                     </ui:ForEachFileX.Body>
                   </ui:ForEachFileX>
-                  <If sap2010:Annotation.AnnotationText="If reconciliation file name is empty means there are no files in the reconciliation folder, in that case we stop the program." Condition="[ReconciliationFileCount &lt;&gt; 1]" DisplayName="Check that there is a recon file" sap:VirtualizedContainerService.HintSize="520,507" sap2010:WorkflowViewState.IdRef="If_23">
+                  <If sap2010:Annotation.AnnotationText="If reconciliation file name is empty means there are no files in the reconciliation folder, in that case we stop the program." Condition="[ReconciliationFileCount &lt;&gt; 1]" DisplayName="Check that there is a recon file" sap:VirtualizedContainerService.HintSize="520,508.6666666666667" sap2010:WorkflowViewState.IdRef="If_23">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,298" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,298.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_79">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,123.5" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;Error: Please ensure that you have a reconciliation file in the reconciliation folder&quot;]" />
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="416,124" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;Error: Please ensure that you have a reconciliation file in the reconciliation folder&quot;]" />
                         <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_3" Reason="Please ensure that you have a reconciliation file in the reconciliation folder" />
                       </Sequence>
                     </If.Then>
@@ -781,7 +781,7 @@
                       </Sequence>
                     </If.Else>
                   </If>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,167" sap2010:WorkflowViewState.IdRef="LogMessage_24" Message="[&quot;End of renaming recon file&quot;]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_24" Message="[&quot;End of renaming recon file&quot;]" />
                 </Sequence>
                 <FlowStep.Next>
                   <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
