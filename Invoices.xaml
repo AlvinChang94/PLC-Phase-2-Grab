@@ -52,6 +52,13 @@
       <x:String>UiPath.Excel.Model</x:String>
       <x:String>UiPath.Excel.Activities.Business</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Excel.Activities.Business.Filter</x:String>
+      <x:String>UiPath.Excel.Activities.Windows.Business</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -120,16 +127,26 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Invoices" sap:VirtualizedContainerService.HintSize="807,2694" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Invoices" sap:VirtualizedContainerService.HintSize="634,3448.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="522,2671" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="522,3425.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="LastRowInv" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_MergedJKL" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_MergedDEFG" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_MergedB" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_ExistJKL" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_ExistDEFG" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dt_ExistB" />
         <Variable x:TypeArguments="x:String" Name="PdfText" />
         <Variable x:TypeArguments="s:String[]" Name="PdfFiles" />
         <Variable x:TypeArguments="sd:DataTable" Name="dt_InvoiceData" />
@@ -149,19 +166,19 @@
           <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(in_Config("Grab Statements Folder Path").ToString, "*.pdf").Where(Function(f) System.Text.RegularExpressions.Regex.IsMatch(Path.GetFileName(f), "^\d{8}") AndAlso DateTime.ParseExact(System.Text.RegularExpressions.Regex.Match(Path.GetFileName(f), "^\d{8}").Value, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).Date &gt;= New DateTime(in_Benchmark_Year, in_Benchmark_Month, CInt(in_Config("StartDayValue").ToString)).Date AndAlso DateTime.ParseExact(System.Text.RegularExpressions.Regex.Match(Path.GetFileName(f), "^\d{8}").Value, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).Date &lt;= If(DateTime.ParseExact(System.Text.RegularExpressions.Regex.Match(Path.GetFileName(f), "^\d{8}").Value, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).Month = in_Benchmark_Month, New DateTime(in_Benchmark_Year, in_Benchmark_Month, CInt(in_Config("EndDayValue").ToString)).Date, New DateTime(in_Benchmark_Year, in_Benchmark_Month, CInt(in_Config("EndDayValue").ToString)).AddDays(6).Date)).ToArray()]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="488,484" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[PdfFiles]">
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="488,528.5" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[PdfFiles]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="x:String">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,352.5" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,397" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,79" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(currentText)]" Text="[PdfText]">
+              <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,123.5" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(currentText)]" Text="[PdfText]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -174,30 +191,44 @@
           </ActivityAction>
         </ui:ForEach.Body>
       </ui:ForEach>
-      <ueab:ExcelApplicationCard CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="488,1493" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[Path.Combine(in_Config(&quot;Reconciliation Folder Path&quot;).ToString, in_ReconciliationFileName)]">
+      <ueab:ExcelApplicationCard CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="488,2203" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[Path.Combine(in_Config(&quot;Reconciliation Folder Path&quot;).ToString, in_ReconciliationFileName)]">
         <ueab:ExcelApplicationCard.Body>
           <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1262.5" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1972.5" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[dt_InvoiceData.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="452,1202.5" sap2010:WorkflowViewState.IdRef="If_1">
+              <ueab:ReadRangeX DisplayName="Read Range" HasHeaders="False" sap:VirtualizedContainerService.HintSize="452,171" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;B15:B72&quot;)]" SaveTo="[dt_ExistB]" />
+              <ueab:ReadRangeX DisplayName="Read Range" HasHeaders="False" sap:VirtualizedContainerService.HintSize="452,171" sap2010:WorkflowViewState.IdRef="ReadRangeX_2" Range="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;D15:G72&quot;)]" SaveTo="[dt_ExistDEFG]" />
+              <ueab:ReadRangeX DisplayName="Read Range" HasHeaders="False" sap:VirtualizedContainerService.HintSize="452,171" sap2010:WorkflowViewState.IdRef="ReadRangeX_3" Range="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;J15:L72&quot;)]" SaveTo="[dt_ExistJKL]" />
+              <If Condition="[dt_InvoiceData.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="452,1399.5" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,845" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,1042" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;B15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[dt_InvoiceData.DefaultView.ToTable(False, &quot;ColB&quot;)]" />
-                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;D15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[dt_InvoiceData.DefaultView.ToTable(False, &quot;ColD&quot;, &quot;ColE&quot;, &quot;ColF&quot;, &quot;ColG&quot;)]" />
-                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;J15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_3" IgnoreEmptySource="False" Source="[dt_InvoiceData.DefaultView.ToTable(False, &quot;ColJ&quot;, &quot;ColK&quot;, &quot;ColL&quot;)]" />
-                    <ueab:FormatRangeX Alignment="{x:Null}" Font="{x:Null}" DisplayName="Format Cells" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="FormatRangeX_1" Range="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;K15:L&quot; + (14 + dt_InvoiceData.Rows.Count).ToString())]">
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="' 1. Initialize Merged Tables&#xD;&#xA;dt_MergedB = dt_ExistB.Clone()&#xD;&#xA;dt_MergedDEFG = dt_ExistDEFG.Clone()&#xD;&#xA;dt_MergedJKL = dt_ExistJKL.Clone()&#xD;&#xA;&#xD;&#xA;' 2. Identify new dates from dt_InvoiceData (ColB is Index 0)&#xD;&#xA;Dim newDates As New HashSet(Of DateTime)()&#xD;&#xA;For Each row As DataRow In dt_InvoiceData.Rows&#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    If DateTime.TryParse(row(0).ToString(), d) Then&#xD;&#xA;        newDates.Add(d.Date)&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 3. Process existing data (FILTERING OUT THE -2 BILLIONS HERE)&#xD;&#xA;Dim combinedRows As New List(Of Object())&#xD;&#xA;For i As Integer = 0 To dt_ExistB.Rows.Count - 1&#xD;&#xA;    ' Safety check to ensure matching rows across all blocks&#xD;&#xA;    If i &gt;= dt_ExistDEFG.Rows.Count OrElse i &gt;= dt_ExistJKL.Rows.Count Then Continue For&#xD;&#xA;    &#xD;&#xA;    ' YOUR IDEA: Check if Column D (Index 0 of dt_ExistDEFG) is blank. &#xD;&#xA;    ' If it is blank, skip the row entirely! This leaves the -2 billions behind.&#xD;&#xA;    Dim colD_Value As String = dt_ExistDEFG.Rows(i)(0).ToString()&#xD;&#xA;    If String.IsNullOrWhiteSpace(colD_Value) Then &#xD;&#xA;        Continue For &#xD;&#xA;    End If&#xD;&#xA;    &#xD;&#xA;    ' Also check if the Date is blank&#xD;&#xA;    Dim rawDate As String = dt_ExistB.Rows(i)(0).ToString()&#xD;&#xA;    If String.IsNullOrWhiteSpace(rawDate) Then Continue For&#xD;&#xA;    &#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    Dim isDate As Boolean = DateTime.TryParse(rawDate, d)&#xD;&#xA;    &#xD;&#xA;    ' Overwrite Rule: Keep old row ONLY if date is NOT in the new run&#xD;&#xA;    If Not isDate OrElse Not newDates.Contains(d.Date) Then&#xD;&#xA;        Dim rowData(7) As Object&#xD;&#xA;        rowData(0) = dt_ExistB.Rows(i)(0)&#xD;&#xA;        rowData(1) = dt_ExistDEFG.Rows(i)(0)&#xD;&#xA;        rowData(2) = dt_ExistDEFG.Rows(i)(1)&#xD;&#xA;        rowData(3) = dt_ExistDEFG.Rows(i)(2)&#xD;&#xA;        rowData(4) = dt_ExistDEFG.Rows(i)(3)&#xD;&#xA;        rowData(5) = dt_ExistJKL.Rows(i)(0)&#xD;&#xA;        rowData(6) = dt_ExistJKL.Rows(i)(1)&#xD;&#xA;        rowData(7) = dt_ExistJKL.Rows(i)(2)&#xD;&#xA;        combinedRows.Add(rowData)&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 4. Append new data&#xD;&#xA;For Each row As DataRow In dt_InvoiceData.Rows&#xD;&#xA;    Dim rowData(7) As Object&#xD;&#xA;    rowData(0) = row(0) ' B&#xD;&#xA;    rowData(1) = row(1) ' D&#xD;&#xA;    rowData(2) = row(2) ' E&#xD;&#xA;    rowData(3) = row(3) ' F&#xD;&#xA;    rowData(4) = row(4) ' G&#xD;&#xA;    rowData(5) = row(5) ' J&#xD;&#xA;    rowData(6) = row(6) ' K&#xD;&#xA;    rowData(7) = row(7) ' L&#xD;&#xA;    combinedRows.Add(rowData)&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 5. Sort chronologically by the date column (Index 0 / Col B)&#xD;&#xA;combinedRows = combinedRows.OrderBy(Function(x) &#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    If DateTime.TryParse(x(0).ToString(), d) Then Return d&#xD;&#xA;    Return DateTime.MaxValue&#xD;&#xA;End Function).ToList()&#xD;&#xA;&#xD;&#xA;' 6. Populate the final separated tables&#xD;&#xA;For Each item In combinedRows&#xD;&#xA;    dt_MergedB.Rows.Add(item(0))&#xD;&#xA;    dt_MergedDEFG.Rows.Add(item(1), item(2), item(3), item(4))&#xD;&#xA;    dt_MergedJKL.Rows.Add(item(5), item(6), item(7))&#xD;&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                      <ui:InvokeCode.Arguments>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_InvoiceData">[dt_InvoiceData]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ExistB">[dt_ExistB]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ExistDEFG">[dt_ExistDEFG]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ExistJKL">[dt_ExistJKL]</InArgument>
+                        <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_MergedB">[dt_MergedB]</OutArgument>
+                        <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_MergedDEFG">[dt_MergedDEFG]</OutArgument>
+                        <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_MergedJKL">[dt_MergedJKL]</OutArgument>
+                      </ui:InvokeCode.Arguments>
+                    </ui:InvokeCode>
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;B15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[dt_MergedB]" />
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;D15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[dt_MergedDEFG]" />
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;J15&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_3" IgnoreEmptySource="False" Source="[dt_MergedJKL]" />
+                    <ueab:FormatRangeX Alignment="{x:Null}" Font="{x:Null}" DisplayName="Format Cells" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="FormatRangeX_1" Range="[Excel.Sheet(&quot;Invoice Detail&quot;).Range(&quot;K15:L&quot; + (14 + dt_MergedB.Rows.Count).ToString())]">
                       <ueab:FormatRangeX.Format>
                         <ueab:CustomFormat FormatAsString="d/m/yyyy" />
                       </ueab:FormatRangeX.Format>
