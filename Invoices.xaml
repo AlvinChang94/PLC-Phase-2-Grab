@@ -132,13 +132,13 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Invoices" sap:VirtualizedContainerService.HintSize="634,3448.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Invoices" sap:VirtualizedContainerService.HintSize="801,3624.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="522,3425.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="522,3601.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="LastRowInv" />
         <Variable x:TypeArguments="sd:DataTable" Name="dt_MergedJKL" />
@@ -250,6 +250,7 @@
           </ActivityAction>
         </ueab:ExcelApplicationCard.Body>
       </ueab:ExcelApplicationCard>
+      <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="All" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="488,176" sap2010:WorkflowViewState.IdRef="KillProcess_2" ProcessName="excel" />
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,167" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Ended Invoice processing&quot;]" />
     </Sequence>
   </Sequence>

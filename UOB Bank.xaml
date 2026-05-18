@@ -121,13 +121,13 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UOB_Bank" sap:VirtualizedContainerService.HintSize="801,6499.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UOB_Bank" sap:VirtualizedContainerService.HintSize="801,6807" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="582.5,6476.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="582.5,6784" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="LastRowBank" />
         <Variable x:TypeArguments="sd:DataTable" Name="dt_MergedBank" />
@@ -445,50 +445,49 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachRow>
-      <ueab:ExcelApplicationCard DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="548.5,1710" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_Config(&quot;Reconciliation Folder Path&quot;).ToString + &quot;\&quot; + in_ReconciliationFileName]">
+      <ueab:ExcelApplicationCard DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="548.5,2017.5" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_Config(&quot;Reconciliation Folder Path&quot;).ToString + &quot;\&quot; + in_ReconciliationFileName]">
         <ueab:ExcelApplicationCard.Body>
           <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1663.5" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1787" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[dt_BankFinal IsNot Nothing AndAlso dt_BankFinal.Columns.Count &gt; 0 AndAlso dt_BankFinal.Rows.Count &gt; 0]" DisplayName="If there is no data to write, do nothing" sap:VirtualizedContainerService.HintSize="488,1603.5" sap2010:WorkflowViewState.IdRef="If_8">
+              <If Condition="[dt_BankFinal IsNot Nothing AndAlso dt_BankFinal.Columns.Count &gt; 0 AndAlso dt_BankFinal.Rows.Count &gt; 0]" DisplayName="If there is no data to write, do nothing" sap:VirtualizedContainerService.HintSize="488,1727" sap2010:WorkflowViewState.IdRef="If_8">
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1382.5" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1506" sap2010:WorkflowViewState.IdRef="Sequence_22">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ueab:FindFirstLastDataRowX FirstRowIndex="{x:Null}" BlankRowsToSkip="100" ColumnName="D" ConfigureLastRowAs="LastPopulatedRow" DisplayName="Find First/Last Data Row" FirstRowOffset="0" HasHeaders="False" sap:VirtualizedContainerService.HintSize="452,275" sap2010:WorkflowViewState.IdRef="FindFirstLastDataRowX_1" LastRowIndex="[LastRowBank]" LastRowOffset="0" Range="[Excel.Sheet(&quot;UOB Bank&quot;)]" VisibleRowsOnly="False" />
-                    <If Condition="[LastRowBank &gt;= 5]" sap:VirtualizedContainerService.HintSize="452,1047.5" sap2010:WorkflowViewState.IdRef="If_10">
+                    <If Condition="[LastRowBank &gt;= 5]" sap:VirtualizedContainerService.HintSize="452,1171" sap2010:WorkflowViewState.IdRef="If_10">
                       <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,642.5" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,766" sap2010:WorkflowViewState.IdRef="Sequence_29">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <ueab:ReadRangeX DisplayName="Read Range" HasHeaders="False" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;UOB Bank&quot;).Range(&quot;A5:K&quot; + Math.Max(LastRowBank, 5).ToString)]" SaveTo="[dt_ExistBank]" />
-                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' 1. Initialize Merged Table&#xD;&#xA;dt_MergedBank = dt_ExistBank.Clone()&#xD;&#xA;&#xD;&#xA;' 2. Identify new dates&#xD;&#xA;Dim newDates As New HashSet(Of DateTime)()&#xD;&#xA;For Each row As DataRow In dt_BankFinal.Rows&#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    ' Captures the dates previously formatted to MM/dd/yyyy&#xD;&#xA;    If DateTime.TryParse(row(2).ToString().Trim(), d) Then&#xD;&#xA;        newDates.Add(d.Date)&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 3. Process existing data (Skip rows matching new dates to overwrite duplicates)&#xD;&#xA;Dim combinedRows As New List(Of Object())&#xD;&#xA;For Each row As DataRow In dt_ExistBank.Rows&#xD;&#xA;    ' Skip entirely empty rows&#xD;&#xA;    If String.IsNullOrWhiteSpace(row(0).ToString()) AndAlso String.IsNullOrWhiteSpace(row(2).ToString()) Then &#xD;&#xA;        Continue For&#xD;&#xA;    End If&#xD;&#xA;    &#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    Dim isDate As Boolean = DateTime.TryParse(row(2).ToString().Trim(), d)&#xD;&#xA;    &#xD;&#xA;    ' Overwrite Rule: Keep old row ONLY if its date is NOT in the new run&#xD;&#xA;    If Not isDate OrElse Not newDates.Contains(d.Date) Then&#xD;&#xA;        Dim rowData As Object() = row.ItemArray&#xD;&#xA;        &#xD;&#xA;        ' Convert back to a true TimeSpan to strip the 01/01/0001 date component&#xD;&#xA;        Dim parsedTime As DateTime&#xD;&#xA;        If DateTime.TryParse(rowData(4).ToString(), parsedTime) Then&#xD;&#xA;            rowData(4) = parsedTime.TimeOfDay&#xD;&#xA;        End If&#xD;&#xA;        &#xD;&#xA;        combinedRows.Add(rowData)&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 4. Append new data&#xD;&#xA;For Each row As DataRow In dt_BankFinal.Rows&#xD;&#xA;    If Not String.IsNullOrWhiteSpace(row(2).ToString()) Then&#xD;&#xA;        Dim rowData As Object() = row.ItemArray&#xD;&#xA;        &#xD;&#xA;        ' Convert back to a true TimeSpan to strip the 01/01/0001 date component&#xD;&#xA;        Dim parsedTime As DateTime&#xD;&#xA;        If DateTime.TryParse(rowData(4).ToString(), parsedTime) Then&#xD;&#xA;            rowData(4) = parsedTime.TimeOfDay&#xD;&#xA;        End If&#xD;&#xA;        &#xD;&#xA;        combinedRows.Add(rowData)&#xD;&#xA;    End If&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;' 5. Sort chronologically by the date column (Index 2)&#xD;&#xA;combinedRows = combinedRows.OrderBy(Function(x) &#xD;&#xA;    Dim d As DateTime&#xD;&#xA;    If DateTime.TryParse(x(2).ToString(), d) Then &#xD;&#xA;        Return d&#xD;&#xA;    End If&#xD;&#xA;    Return DateTime.MaxValue ' Push non-dates to the bottom&#xD;&#xA;End Function).ToList()&#xD;&#xA;&#xD;&#xA;' 6. Populate the final table&#xD;&#xA;For Each item In combinedRows&#xD;&#xA;    dt_MergedBank.Rows.Add(item)&#xD;&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' 1. Initialize Merged Table&#xA;dt_MergedBank = dt_ExistBank.Clone()&#xA;&#xA;' 2. Identify new dates&#xA;Dim newDates As New HashSet(Of DateTime)()&#xA;For Each row As DataRow In dt_BankFinal.Rows&#xA;    Dim d As DateTime&#xA;    ' Captures the dates previously formatted to MM/dd/yyyy&#xA;    If DateTime.TryParse(row(2).ToString().Trim(), d) Then&#xA;        newDates.Add(d.Date)&#xA;    End If&#xA;Next&#xA;&#xA;' 3. Process existing data (Skip rows matching new dates to overwrite duplicates)&#xA;Dim combinedRows As New List(Of Object())&#xA;For Each row As DataRow In dt_ExistBank.Rows&#xA;    ' Skip entirely empty rows&#xA;    If String.IsNullOrWhiteSpace(row(0).ToString()) AndAlso String.IsNullOrWhiteSpace(row(2).ToString()) Then &#xA;        Continue For&#xA;    End If&#xA;    &#xA;    Dim d As DateTime&#xA;    Dim isDate As Boolean = DateTime.TryParse(row(2).ToString().Trim(), d)&#xA;    &#xA;    ' Overwrite Rule: Keep old row ONLY if its date is NOT in the new run&#xA;    If Not isDate OrElse Not newDates.Contains(d.Date) Then&#xA;        Dim rowData As Object() = row.ItemArray&#xA;        &#xA;        ' Convert back to a true TimeSpan to strip the 01/01/0001 date component&#xA;        Dim parsedTime As DateTime&#xA;        If DateTime.TryParse(rowData(4).ToString(), parsedTime) Then&#xA;            rowData(4) = parsedTime.TimeOfDay&#xA;        End If&#xA;        &#xA;        combinedRows.Add(rowData)&#xA;    End If&#xA;Next&#xA;&#xA;' 4. Append new data&#xA;For Each row As DataRow In dt_BankFinal.Rows&#xA;    If Not String.IsNullOrWhiteSpace(row(2).ToString()) Then&#xA;        Dim rowData As Object() = row.ItemArray&#xA;        &#xA;        ' Convert back to a true TimeSpan to strip the 01/01/0001 date component&#xA;        Dim parsedTime As DateTime&#xA;        If DateTime.TryParse(rowData(4).ToString(), parsedTime) Then&#xA;            rowData(4) = parsedTime.TimeOfDay&#xA;        End If&#xA;        &#xA;        combinedRows.Add(rowData)&#xA;    End If&#xA;Next&#xA;&#xA;' 5. Sort chronologically by the date column (Index 2)&#xA;combinedRows = combinedRows.OrderBy(Function(x) &#xA;    Dim d As DateTime&#xA;    If DateTime.TryParse(x(2).ToString(), d) Then &#xA;        Return d&#xA;    End If&#xA;    Return DateTime.MaxValue ' Push non-dates to the bottom&#xA;End Function).ToList()&#xA;&#xA;' 6. Populate the final table&#xA;For Each item In combinedRows&#xA;    dt_MergedBank.Rows.Add(item)&#xA;Next" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                             <ui:InvokeCode.Arguments>
-                              <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_BankFinal">
-                                <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_BankFinal" />
-                              </InArgument>
-                              <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ExistBank">
-                                <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_ExistBank" />
-                              </InArgument>
-                              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_MergedBank">
-                                <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_MergedBank" />
-                              </OutArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_BankFinal">[dt_BankFinal]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="dt_ExistBank">[dt_ExistBank]</InArgument>
+                              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_MergedBank">[dt_MergedBank]</OutArgument>
                             </ui:InvokeCode.Arguments>
                           </ui:InvokeCode>
-                          <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;UOB Bank&quot;).Range(&quot;A5&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,214.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[dt_MergedBank]" />
+                          <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;UOB Bank&quot;).Range(&quot;A5&quot;)]" DisplayName="Write DataTable to Excel" ExcludeHeaders="True" sap:VirtualizedContainerService.HintSize="416,223.5" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[dt_MergedBank]" />
+                          <ueab:FormatRangeX Alignment="{x:Null}" Font="{x:Null}" DisplayName="Format Cells" sap:VirtualizedContainerService.HintSize="416,114.5" sap2010:WorkflowViewState.IdRef="FormatRangeX_1" Range="[Excel.Sheet(&quot;UOB Bank&quot;).Range(&quot;E5:E&quot;+ (dt_MergedBank.Rows.Count + 4).ToString)]">
+                            <ueab:FormatRangeX.Format>
+                              <ueab:CustomFormat FormatAsString="h:mm:ss am/pm" />
+                            </ueab:FormatRangeX.Format>
+                          </ueab:FormatRangeX>
                         </Sequence>
                       </If.Then>
                       <If.Else>
